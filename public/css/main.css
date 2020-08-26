@@ -1,0 +1,89 @@
+body {
+    font-family: 'Droid Sans', sans-serif;
+    color: #fff;
+    background-color: #1d0d35;
+}
+
+h1 {
+    font-size: 6em;
+    margin: 40px;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 20px;
+}
+
+a {
+    color: #ec8ac1;
+}
+a:hover {
+    text-decoration: none;
+    color: #c16197;
+}
+
+#login-box p {
+    font-size: 1.5em;
+}
+#login-box .fa {
+    margin: 10px;
+}
+#login-box {
+    border: 2px solid #452c6b;
+    border-radius: 5px;
+    padding: 10px 0px 0px 0px;
+    margin: 20px;
+    background-color: #301f4a;
+}
+#login-box {
+    cursor: pointer;
+}
+#login-box:active {
+    background-color: #3a1c48;
+    transform: translateY(2px);
+}
+
+.result-row {
+    margin: 15px;
+}
+
+.result-col {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.result-row .col-xs-12 {
+    background-color: #542868;
+    padding: 8px 15px 12px 15px;
+    border-radius: 5px;
+}
+
+.result-name-text {
+    font-size: 3rem;
+}
+.result-snippet {
+    font-size: 2rem;
+}
+.p-counter {
+    font-size: 2rem;
+}
+
+.image-container {
+    width: 200px;
+    height: 200px;
+}
+.result-image {
+/*     max-height: 200px;
+    max-width: 300px; */
+    height: auto;
+    width: 100%;
+}
+
+.footer-container {
+    margin: 50px 0px 10px 0px;
+}
+
+.hidden {
+    display: none;
+}
