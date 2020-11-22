@@ -7,6 +7,7 @@ var chrome = require('selenium-webdriver/chrome');
 var edge = require('selenium-webdriver/edge');
 require('dotenv').load();
 
+
 var APP_URL = process.env['APP_URL'].slice(0, -1) + ':' + process.env['PORT'] + '/';
 
 var browsers = ['chrome', 'MicrosoftEdge'];
@@ -23,18 +24,22 @@ browsers.forEach((browser) => {
     let driverPath = path.join(__dirname, 'drivers', driverFilenames[browser]);
     services[browser] = new driverModules[browser].ServiceBuilder(driverPath);
 })
+function get_driver(browser) {
+    return new webdriver.Builder()
+        .forBrowser(browser)
+        .setChromeService(services['chrome'])
+        .setEdgeService(services['MicrosoftEdge'])
+        .build();
+}
+
 
 browsers.forEach((browser) => {
-    describe('Basic Selenium tests (' + browser + ')', function () {
-        this.timeout(10000);
+    describe('Navigate to home page (' + browser + ')', function () {
+        this.timeout(20000);
         var driver;
 
         before(function () {
-            driver = new webdriver.Builder()
-                .forBrowser(browser)
-                .setChromeService(services['chrome'])
-                .setEdgeService(services['MicrosoftEdge'])
-                .build();
+            driver = get_driver(browser);
         });
 
         after(function () {
