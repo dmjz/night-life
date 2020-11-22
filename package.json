@@ -12,7 +12,8 @@
     "url": "git+https://github.com/djmot/nightlife"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "author": "David Mason",
   "license": "MIT",
@@ -28,5 +29,8 @@
     "querystring": "^0.2.0",
     "request": "^2.75.0",
     "shortid": "^2.2.6"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
   }
 }
