@@ -53,7 +53,7 @@ browsers.forEach((browser) => {
 
         it('should have correct home page title', function () {
             return driver.getTitle().then(function (title) {
-                assert.strictEqual(title, 'nightlife-djmot');
+                assert.strictEqual(title,  'nightlife-djmot');
             });
         });
     });
