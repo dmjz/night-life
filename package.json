@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "mocha"
+    "test": "mocha",
+    "ci": "start-server-and-test start http://127.0.0.1:3000/ test"
   },
   "author": "David Mason",
   "license": "MIT",
@@ -31,7 +32,9 @@
     "shortid": "^2.2.6"
   },
   "devDependencies": {
+    "lazy-ass": "^1.6.0",
     "mocha": "^8.2.1",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "start-server-and-test": "^1.11.6"
   }
 }
