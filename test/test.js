@@ -35,7 +35,7 @@ function get_driver(browser) {
 
 browsers.forEach((browser) => {
     describe('Navigate to home page (' + browser + ')', function () {
-        this.timeout(120000);
+        this.timeout(300000);
         var driver;
 
         before(function () {
