@@ -34,8 +34,8 @@ function get_driver(browser) {
 
 // Selenium tests - run on each browser
 browsers.forEach((browser) => {
-    describe('Get home page (' + browser + ')', function () {
-        this.timeout(300000);
+    describe('Home page elements (' + browser + ')', function () {
+        this.timeout(120 * 1000);
         var driver;
 
         before(function () {
@@ -56,10 +56,24 @@ browsers.forEach((browser) => {
                 assert.strictEqual(title, 'nightlife-djmot');
             });
         });
+
+        it('should have interactive elements', function () {
+            var checkElementIds = [
+                'login-box',
+                'search-text',
+                'search-text'
+            ];
+            var id;
+            for (id of checkElementIds) {
+                assert.doesNotThrow(() => {
+                    driver.findElement(webdriver.By.id(id));
+                });
+            }
+        });
     });
 
-    describe('Get search result (' + browser + ')', function () {
-        this.timeout(300000);
+    describe('Search results (' + browser + ')', function () {
+        this.timeout(120 * 1000);
         var driver;
 
         before(function () {
@@ -97,6 +111,33 @@ browsers.forEach((browser) => {
                         .then((searchResultRows) => {
                             assert(searchResultRows.length > 0);
                         });
+                });
+        });
+
+        it('should have interactive elements', function () {
+            var checkElementClasses = [
+                'result-name-text',
+                'result-image',
+                'result-add-button',
+                'result-anchor'
+            ];
+            var className;
+            for (className of checkElementClasses) {
+                assert.doesNotThrow(() => {
+                    driver.findElement(webdriver.By.className(className));
+                });
+            }
+        });
+
+        it('should link to business yelp page', function () {
+            return driver
+                .findElements(webdriver.By.className('result-anchor'))
+                .then((resultAnchors) => {
+                    resultAnchors[1]
+                        .getAttribute('href')
+                        .then((href) => {
+                            assert(href.indexOf('www.yelp.com') > -1);
+                        })
                 });
         });
     });
