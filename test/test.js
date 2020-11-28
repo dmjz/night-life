@@ -8,7 +8,7 @@ var edge = require('selenium-webdriver/edge');
 require('dotenv').load();
 
 
-var APP_URL = process.env['APP_URL'].slice(0, -1) + ':' + process.env['PORT'] + '/';
+var APP_URL = process.env['APP_URL'];
 
 var browsers = ['chrome', 'MicrosoftEdge'];
 var driverFilenames = {
@@ -32,9 +32,9 @@ function get_driver(browser) {
         .build();
 }
 
-
+// Selenium tests - run on each browser
 browsers.forEach((browser) => {
-    describe('Navigate to home page (' + browser + ')', function () {
+    describe('Get home page (' + browser + ')', function () {
         this.timeout(300000);
         var driver;
 
@@ -47,7 +47,7 @@ browsers.forEach((browser) => {
             return driver.quit();
         });
 
-        it('should get home page', function () {
+        it('get home page', function () {
             return driver.get(APP_URL);
         });
 
@@ -55,6 +55,49 @@ browsers.forEach((browser) => {
             return driver.getTitle().then(function (title) {
                 assert.strictEqual(title, 'nightlife-djmot');
             });
+        });
+    });
+
+    describe('Get search result (' + browser + ')', function () {
+        this.timeout(300000);
+        var driver;
+
+        before(function () {
+            driver = get_driver(browser);
+        });
+
+        after(function () {
+            driver.close();
+            return driver.quit();
+        });
+
+        it('submit search', function () {
+            return driver
+                .get(APP_URL)
+                .then(() => {
+                    driver
+                        .findElement(webdriver.By.id('search-text'))
+                        .sendKeys('food')
+                        .then(() => {
+                            driver
+                                .findElement(webdriver.By.id('search-text'))
+                                .sendKeys(webdriver.Key.ENTER);
+                        });
+                });
+        });
+
+        it('should return nonempty results', function () {
+            return driver
+                .wait(
+                    webdriver.until.elementLocated(webdriver.By.className('result-row')),
+                    30 * 1000
+                ).then(() => {
+                    driver
+                        .findElements(webdriver.By.className('result-row'))
+                        .then((searchResultRows) => {
+                            assert(searchResultRows.length > 0);
+                        });
+                });
         });
     });
 })
