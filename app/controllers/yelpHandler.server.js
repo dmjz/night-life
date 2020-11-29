@@ -30,7 +30,7 @@ function YelpHandler () {
             req.query.term,
             req.query.lat,
             req.query.lng,
-            function (error, response, data) { console.log(data); res.send(data); }
+            function (error, response, data) { res.send(data); }
         );
     };
 
