@@ -30,3 +30,5 @@ routes(app, passport);
 app.listen(process.env.PORT, process.env.IP, function () {
 	console.log('Node.js listening on port ' + process.env.PORT);
 });
+
+module.exports = app;

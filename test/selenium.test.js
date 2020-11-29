@@ -1,14 +1,22 @@
+// # Selenium tests
+//
+// Selenium tests for interactive HTML elements, 
+// search results, and links.
+//
+// --------------------------------------------------------
+
+
 'use strict';
 
-var path = require('path');
-var assert = require('assert');
-var webdriver = require('selenium-webdriver');
-var chrome = require('selenium-webdriver/chrome');
-var edge = require('selenium-webdriver/edge');
+const path = require('path');
+const assert = require('assert');
+const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const edge = require('selenium-webdriver/edge');
 require('dotenv').load();
 
 
-var APP_URL = process.env['APP_URL'];
+const APP_URL = process.env['APP_URL'];
 
 var browsers = ['chrome', 'MicrosoftEdge'];
 var driverFilenames = {
@@ -32,7 +40,7 @@ function get_driver(browser) {
         .build();
 }
 
-// Selenium tests - run on each browser
+
 browsers.forEach((browser) => {
     describe('Home page elements (' + browser + ')', function () {
         this.timeout(120 * 1000);
